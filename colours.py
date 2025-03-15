@@ -1,20 +1,17 @@
+import sys
+from pathlib import Path
+from colorama import Fore, Style
 
 
+def print_directory_contents(directory_path: Path, indent: int = 0):
+    for item in directory_path.iterdir():
+        if item.is_dir():
+            print(Fore.BLUE + ' ' * indent + '📁 ' + item.name)
+            print_directory_contents(item, indent + 2)
+        else:
+            print(Fore.GREEN + ' ' * indent + '📜 ' + item.name)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print_directory_contents(Path(sys.argv[1]))
 
 
 
