@@ -25,8 +25,9 @@ def show_phone(args, contacts):
     return "Contact not found."
 
 def show_all(contacts):
-    return contacts
-
+    if contacts:
+        return "\n".join([f"{name}: {phone}" for name, phone in contacts.items()])
+    return "No contacts found."
 
 def main():
     contacts = {}
@@ -35,7 +36,7 @@ def main():
         user_input = input("Enter a command: ")
         command, *args = parse_input(user_input)
 
-        if command in ["close", "exit"]:
+        if command in ("close", "exit"):
             print("Good bye!")
             break
         elif command == "hello":
@@ -48,9 +49,6 @@ def main():
             print(show_phone(args, contacts))
         elif command == "all":
             print(show_all(contacts))
-        elif command == "exit":
-            print("Good bye!")
-            break
         else:
             print("Invalid command.")
 
